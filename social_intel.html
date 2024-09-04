@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Intelligence Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 25px;
+        }
+        .question h3 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+        .question input {
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #2c3e50;
+            display: none;
+        }
+        .result p {
+            margin-bottom: 10px;
+        }
+        .result strong {
+            font-size: 1.5em;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Social Intelligence Test</h1>
+        <form id="quizForm">
+            <div class="question">
+                <h3>1. When you see someone upset, what do you do?</h3>
+                <label><input type="radio" name="q1" value="3" required> I immediately try to understand their feelings and offer support.</label><br>
+                <label><input type="radio" name="q1" value="2"> I notice they are upset but wait for them to approach me.</label><br>
+                <label><input type="radio" name="q1" value="1"> I often don’t notice unless it’s very obvious.</label>
+            </div>
+
+            <div class="question">
+                <h3>2. How comfortable are you in social situations with new people?</h3>
+                <label><input type="radio" name="q2" value="3" required> Very comfortable—I easily start conversations and connect with others.</label><br>
+                <label><input type="radio" name="q2" value="2"> Somewhat comfortable—I can manage, but it takes me a while to warm up.</label><br>
+                <label><input type="radio" name="q2" value="1"> Uncomfortable—I usually avoid interacting unless necessary.</label>
+            </div>
+
+            <div class="question">
+                <h3>3. When working in a team, how do you handle conflicts?</h3>
+                <label><input type="radio" name="q3" value="3" required> I actively listen to all sides and help mediate a fair resolution.</label><br>
+                <label><input type="radio" name="q3" value="2"> I try to avoid conflicts but will step in if needed.</label><br>
+                <label><input type="radio" name="q3" value="1"> I tend to stay out of conflicts and let others handle them.</label>
+            </div>
+
+            <div class="question">
+                <h3>4. How well do you understand and manage your own emotions?</h3>
+                <label><input type="radio" name="q4" value="3" required> Very well—I’m aware of my emotions and can regulate them effectively.</label><br>
+                <label><input type="radio" name="q4" value="2"> I understand my emotions but sometimes struggle to control them.</label><br>
+                <label><input type="radio" name="q4" value="1"> I often find my emotions overwhelming and hard to manage.</label>
+            </div>
+
+            <div class="question">
+                <h3>5. How do you respond to others' opinions, especially when they differ from yours?</h3>
+                <label><input type="radio" name="q5" value="3" required> I listen carefully and try to understand their perspective, even if I disagree.</label><br>
+                <label><input type="radio" name="q5" value="2"> I listen, but it’s challenging for me to see their point of view if it’s very different.</label><br>
+                <label><input type="radio" name="q5" value="1"> I usually stick to my opinion and don’t spend much time considering others’.</label>
+            </div>
+
+            <button type="button" onclick="calculateScore()">Submit</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            let totalScore = 0;
+
+            const form = document.forms["quizForm"];
+            for (let i = 1; i <= 5; i++) {
+                const answer = form["q" + i].value;
+                totalScore += parseInt(answer);
+            }
+
+            let feedback = "";
+
+            if (totalScore >= 13 && totalScore <= 15) {
+                feedback = "Outstanding Social Intelligence: You have excellent social intelligence. You’re highly empathetic, very aware of others’ emotions, and skilled at managing relationships and social interactions. You’re likely seen as a compassionate and understanding individual who can easily navigate complex social dynamics.";
+            } else if (totalScore >= 11 && totalScore <= 12) {
+                feedback = "Strong Social Intelligence: You possess strong social intelligence. You’re generally good at understanding others and handling social situations. While there might be areas for improvement, you’re well-equipped to manage interpersonal relationships effectively.";
+            } else if (totalScore >= 9 && totalScore <= 10) {
+                feedback = "Good Social Intelligence: You have a good level of social intelligence. You’re capable of understanding social cues and emotions but may sometimes struggle in more challenging situations. With a bit of focus, you can further enhance these skills.";
+            } else if (totalScore >= 7 && totalScore <= 8) {
+                feedback = "Moderate Social Intelligence: Your social intelligence is moderate. You’re able to navigate social interactions but may find it difficult to fully connect with others or manage emotions in some situations. Developing a deeper understanding of emotions and improving communication skills can help you grow.";
+            } else if (totalScore >= 5 && totalScore <= 6) {
+                feedback = "Basic Social Intelligence: You have basic social intelligence. You’re aware of social dynamics to some extent but often miss or misinterpret cues. Working on empathy and active listening could significantly enhance your social interactions.";
+            } else if (totalScore >= 4) {
+                feedback = "Low Social Intelligence: Your social intelligence is somewhat low. You may find it challenging to understand or engage in social situations effectively. Focusing on improving your awareness of others' emotions and practicing social skills can lead to noticeable improvements.";
+            } else {
+                feedback = "Very Low Social Intelligence: Your social intelligence appears to be very low. You might struggle significantly in social situations, often missing cues or finding it difficult to relate to others. It could be beneficial to seek out opportunities to practice empathy, active listening, and emotional regulation.";
+            }
+
+            document.getElementById("result").innerHTML = `<p><strong>Your Score:</strong> ${totalScore}</p><p>${feedback}</p>`;
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
